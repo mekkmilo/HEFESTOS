@@ -7,6 +7,8 @@
 
 
 
+
+
 <header>
     <nav id="nav" class="nav1">
         <div class="contenedor-nav">
@@ -15,12 +17,26 @@
             </div>
             <div class="enlaces" id="enlaces">
                 <!-- enlaces de la parte superior -->
-                <a href="wellcome" id="enlace-inicio" class="btn-header"> Inicio</a>
-                <a href="serviceP" id="Pendientes" class="btn-header">Servicios Pendientes</a>
-                <a href="usuarios" id="Clientes" class="btn-header">Usuarios</a>
-                <a href="proveedores" id="Proveedores" class="btn-header">Proveedores</a>
-                <a href="inventario" id="Inventario" class="btn-header">Inventario</a>
-                <a href="salir" id="Inventario" class="btn-header">Salir</a>
+                <div class="enlaces" id="enlaces"><!-- enlaces de la parte superior -->
+                            <a href="wellcome" id="enlace-inicio" class="btn-header"> Inicio</a>
+                            <a href="serviceP" id="Pendientes" class="btn-header">Cotizaciones</a>
+                            <a href="usuarios" id="Clientes" class="btn-header">Usuarios</a>
+                            <a href="categoria" id="Categotia" class="btn-header">Categorias</a>
+                            <a href="inventario" id="Inventario" class="btn-header">Portafolio</a>
+                            <a href="salir" id="Inventario" class="btn-header">Salir</a>
+                            <a href="#" class= "dropdown-toggle" data-toggle="dropdown">
+                            <?php 
+                            if($_SESSION["foto"] != ""){
+                                echo '<img src="'.$_SESSION["foto"].'" class="user-image">';
+                            }else{
+                                echo '<img src="vistas/iconos/hades1.png" class="user-image">';
+                            }
+
+                            ?>
+                            
+                            
+                            <span  class="hidden-xs"><?php echo $_SESSION["perfil"] ?></span>
+                            </a>
             </div>
         </div>
         <div class="icono" id="open">
@@ -28,13 +44,12 @@
         </div>
     </nav>
     <div class="textos">
-        <h1 style="color:#000">USUARIOS</h1>
-        <h2 style="color:#000">Momento de decidir su destino</h2>
+        <h1 style="color:#000">PORTAFOLIO</h1>
+        <h2 style="color:#000">Las creaciones del un dios!</h2>
     </div>
 </header>
 
 <div style="height:120px"></div>
-
 
 <!--Ejemplo tabla con DataTables-->
 
@@ -43,9 +58,10 @@
     <div class="box">
         <div class="box-header with-border">
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUsuario">
-                Agregar usuario
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarItem">
+                Agregar Item
             </button>
+            <div style="height:12px"></div>
 
 
             <div class="box-body">
@@ -56,12 +72,13 @@
 
                         <tr>
                             <th style="width:10px">#</th>
+                            <th>imagen</th>
+                            <th>Codigo</th>
                             <th>Nombre</th>
-                            <th>Usuario</th>
-                            <th>foto</th>
-                            <th>perfil</th>
-                            <th>Estado</th>
-                            <th>Ultimo login</th>
+                            <th>Descripcion</th>
+                            <th>Categoria</th>
+                            <th>Precio</th>
+                            <th>fecha</th>
                             <th>Acciones</th>
 
                         </tr>
@@ -69,46 +86,48 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Usuario Administrador</td>
-                            <td>admin</td>
-                            <td><img src="vistas/img/avatar04.png" class="img-thumbnail" width="40px"></td>
-                            <td>Adminitrador</td>
-                            <td><button class="btn btn-success btn-xs">Activado</button></td>
-                            <td>2022-03-06 12:05:33</td>
-                            <td>
+                                <!-- llamado de los productos(visualizacion) -->
+                        <?php 
+
+                            $item= null;
+                            $valor= null;
+
+                             $inventario=ControladorInventario::ctrMostrarInventario($item, $valor);
+
+                             foreach($inventario as $key => $value){
+
+                                echo '<tr>
+                                <td>'.($key+1).'</td>
+
+                                <td><img src="vistas/img/portafolio/man.png" class="img-thumbnail" width="40px"></td>
+                                <td>'.$value["codigo"].'</td>
+                                <td>'.$value["nombre"].'</td>
+                                <td>'.$value["descripcion"].'</td>';
+
+                                $item = "id";
+                                $valor = $value["id_categoria"];
+
+                                $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+
+                                echo'<td>'.$categoria["categoria"].'</td>
+                                <td>$'.$value["precio"].'</td>
+                                <td>'.$value["fecha"].'</td>
+                                <td>
                                 <div class="btn-group">
 
                                     <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
 
                                     <button class="btn btn-danger"><i class="fa fa-times"></i></button>
 
+                            
                             </td>
+                            </tr>';
+
+                             }
 
 
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Usuario Administrador</td>
-                            <td>admin</td>
-                            <td><img src="vistas/img/avatar04.png" class="img-thumbnail" width="40px">
-                            </td>
-                            <td>Adminitrador</td>
-                            <td><button class="btn btn-danger btn-xs">Desactivado</button></td>
-                            <td>2022-03-06 12:05:33</td>
-                            <td>
-                                <div class="btn-group">
-
-                                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-
-                                    <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-
-                            </td>
-
-
-                        </tr>
-
+                        ?>                       
+                                                  
 
                     </tbody>
 
@@ -123,8 +142,8 @@
 
 </section>
 
-<!-- Modal -->
-<div id="modalAgregarUsuario" class="modal fade" role="dialog">
+<!-- Modal agregar usuario -->
+<div id="modalAgregarItem" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -134,7 +153,7 @@
 
                 <div class="modal-header" style="background:#000">
 
-                    <h4 class="modal-title">Agregar Usuario</h4>
+                    <h4 class="modal-title">Agregar Item</h4>
 
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -145,74 +164,88 @@
                     <div class="box-body">
 
                         <div class="form-group">
-                            <!--nombre -->
+                            <!--codigo -->
 
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control input-lg" name="nuevoNombre"
-                                    placeholder="Ingresar nombre" required>
+                                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+                                <input type="text" class="form-control input-lg" name="nuevoCodigo"
+                                    placeholder="Ingresar codigo" required>
 
                             </div>
 
                         </div>
 
 
-                        <!--usuario -->
+                        <!-- nombre -->
+                        <div class="form-group">
+
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+                                <input type="text" class="form-control input-lg" name="nuevoNombre"
+                                    placeholder="Ingresar Nombre" id="nuevoNombre" required>
+
+                            </div>
+
+                        </div>
+
+                        <!--descripcion -->
                         <div class="form-group">
 
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                <input type="text" class="form-control input-lg" name="nuevoUsuario"
-                                    placeholder="Ingresar usuario" required>
+                                <input type="password" class="form-control input-lg" name="nuevaDescripcion"
+                                    placeholder="Ingresar Descripcion" required>
+                               
 
                             </div>
 
                         </div>
 
-                        <!--contraseña -->
-                        <div class="form-group">
-
-
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input type="password" class="form-control input-lg" name="nuevoPassword"
-                                    placeholder="Ingresar contraseña" required>
-
-                            </div>
-
-                        </div>
-
-                        <!--perfil -->
+                        <!--categoria -->
                         <div class="form-group">
 
                             <div class="input-group">
 
-                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                                <select class="form-control input-lg" name="nuevoPerfil">
-                                    
-                                    <option value=""> Seleccionar Perfil </option>
+                                <select class="form-control input-lg" name="nuevaCategoria">
 
-                                    <option value="AdministradorE"> Super Administrador </option>
+                                    <option value=""> Seleccionar Categoria </option>
 
-                                    <option value="Administrador"> Administrador </option>
-                                    
-                                    <option value="Usuario"> Usuario </option>
+                                    <option value="servicio"> servicio </option>
+
+                                    <option value="Productos"> Productos </option>
+
+                                    <option value="Marketing"> Marketing </option>
                                 </select>
 
                             </div>
 
                         </div>
 
+                        <!--precio -->
+                        <div class="form-group">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
+                                <input type="password" class="form-control input-lg" name="nuevoPrecioCompra"
+                                   min="0" placeholder="Ingresar Precio" required>                               
+
+                            </div>
+
+                            
+
                         <!--foto -->
                         <div class="form-group">
 
 
-                            <div class="panel">SUBIR FOTO</div>
-                            <input type="file" id="nuevaFoto" name="nuevaFoto">
-                            <p class="help-block">Peso maximo de la foto 20mb</p>
-                            <img src="vistas/img/avatar04.png" class="img-thumbnail" width="100px">
+                            <div class="panel">SUBIR imagen</div>
+                            <input type="file" class="nuevaimagen" name="nuevaimagen">
+                            <p class="help-block">Peso maximo de la imagen 2mb</p>
+                            <img src="vistas/img/portafolio/man.png" class="img-thumbnail previsualizar" width="100px">
+                            
 
                         </div>
 
@@ -224,6 +257,6 @@
                 <div class="modal-footer">
 
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-                    <button type="submit" class="btn btn-primary">Guardar Usuario</button>
+                    <button type="submit" class="btn btn-primary">Guardar Item</button>
 
                 </div>

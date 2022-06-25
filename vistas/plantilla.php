@@ -90,6 +90,7 @@ session_start();
 					   $_GET["ruta"] == "usuarios" ||
 					   $_GET["ruta"] == "proveedores" ||
 					   $_GET["ruta"] == "inventario" || 
+					   $_GET["ruta"] == "categoria" ||
 					   $_GET["ruta"] == "salir" )  
 					   {              
 						 include "modulos/".$_GET["ruta"].".php";
@@ -109,6 +110,7 @@ session_start();
     <script src="vistas/js/main.js"></script>
     <script src="vistas/js/filtro.js"></script>
 	<script src="vistas/js/usuarios.js"></script>
+	<script src="vistas/js/categorias.js"></script>
 
 	<!-- sweet alert2 -->
 <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->

@@ -20,10 +20,10 @@
     <div class="login-box">
       <img src="vistas/img/logoL.png" class="avatar" alt="Avatar Image">
       <h4>Has tu pedido!</h4>
-      <input  type="text" name="nombres" id="nombres" placeholder="Servicio Adquirido">
-      <input  type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Nombre">
+      <input  type="text" name="servicio" id="servicio" placeholder="Servicio Deseado">
+      <input  type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
       <input  type="text" name="correo" id="correo" placeholder="Ingrese su Correo">
-      <input  type="text" name="correo" id="correo" placeholder="Ingrese la cantidad">
+      <input  type="text" name="cantidad" id="cantidad" placeholder="Ingrese la cantidad">
       <p>Conoce nuestros <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Terminos y Condiciones</a></p>
        <input type="submit" value="Enviar">
       </form>
