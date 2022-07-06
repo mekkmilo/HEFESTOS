@@ -34,7 +34,10 @@ session_start();
   	<script src="vistas/plugins/sweetalert2/sweetalert2.all.min.js"></script>
       
     <!-- datatables JS -->
-    <script type="text/javascript" src="vistas/datatables/datatables.min.js"></script>     
+    <script type="text/javascript" src="vistas/datatables/datatables.min.js"></script>   
+	
+	
+	<script src="vistas/js/productos.js"></script>
        
 	
 
