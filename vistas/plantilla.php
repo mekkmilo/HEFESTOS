@@ -37,7 +37,7 @@ session_start();
     <script type="text/javascript" src="vistas/datatables/datatables.min.js"></script>   
 	
 	
-	<script src="vistas/js/productos.js"></script>
+
        
 	
 
@@ -74,10 +74,12 @@ session_start();
            //login
             if(isset($_GET["ruta"])){ 				
 				         
-            	 if ($_GET["ruta"] == "Login" ||
-               		 $_GET["ruta"] == "servicio" ) {              
-             		 	include "modulos/".$_GET["ruta"].".php";
-            	}
+				if ($_GET["ruta"] == "Login" ||
+				$_GET["ruta"] == "listaInventario" ||
+				$_GET["ruta"] == "nosotros" ||
+				  $_GET["ruta"] == "servicio" ) {              
+					include "modulos/".$_GET["ruta"].".php";
+		  }
 			}
 
 			if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){

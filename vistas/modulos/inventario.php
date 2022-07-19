@@ -15,16 +15,31 @@
             <div class="logo">
                 <img src="vistas/img/logo.png" alt="">
             </div>
-            <div class="enlaces" id="enlaces">
-                <!-- enlaces de la parte superior -->
+            <?php
+
+                if ($_SESSION["perfil"]=="Admin" || $_SESSION["perfil"]=="AdminE"){
+                    echo'
                 <div class="enlaces" id="enlaces"><!-- enlaces de la parte superior -->
-                            <a href="wellcome" id="enlace-inicio" class="btn-header"> Inicio</a>
-                            <a href="serviceP" id="Pendientes" class="btn-header">Cotizaciones</a>
-                            <a href="usuarios" id="Clientes" class="btn-header">Usuarios</a>
-                            <a href="categoria" id="Categotia" class="btn-header">Categorias</a>
-                            <a href="inventario" id="Inventario" class="btn-header">Portafolio</a>
-                            <a href="salir" id="Inventario" class="btn-header">Salir</a>
-                            <a href="#" class= "dropdown-toggle" data-toggle="dropdown">
+                    <a href="wellcome" id="enlace-inicio" class="btn-header"> Inicio</a>
+                    <a href="serviceP" id="Pendientes" class="btn-header">Cotizaciones</a>
+                    <a href="usuarios" id="Clientes" class="btn-header">Usuarios</a>
+                    <a href="categoria" id="categoria" class="btn-header">Categorias</a>
+                    <a href="inventario" id="Inventario" class="btn-header">Portafolio</a>
+                    <a href="salir" id="Inventario" class="btn-header">Salir</a>
+                    <a href="#" class= "dropdown-toggle" data-toggle="dropdown">';
+                }
+
+                if ($_SESSION["perfil"]=="Usuario" ){
+                    echo'
+                <div class="enlaces" id="enlaces"><!-- enlaces de la parte superior -->
+                    <a href="wellcome" id="enlace-inicio" class="btn-header"> Inicio</a>
+                    <a href="serviceP" id="Pendientes" class="btn-header">Cotizaciones</a>                            
+                    <a href="categoria" id="categoria" class="btn-header">Categorias</a>
+                    <a href="inventario" id="Inventario" class="btn-header">Portafolio</a>
+                    <a href="salir" id="Inventario" class="btn-header">Salir</a>
+                    <a href="#" class= "dropdown-toggle" data-toggle="dropdown">';
+                }
+                    ?>
                             <?php 
                             if($_SESSION["foto"] != ""){
                                 echo '<img src="'.$_SESSION["foto"].'" class="user-image">';
@@ -66,12 +81,11 @@
 
             <div class="box-body">
 
-                <table class="table table-bordered table-striped ">
+                <table class="table table-bordered table-striped  tablaProductos">
 
-                    <thead>
-
-                        <tr>
-                            <th style="width:10px">#</th>
+                   <thead>
+               <tr>
+                            <th style="width:10px">id</th>
                             <th>imagen</th>
                             <th>Codigo</th>
                             <th>Nombre</th>
@@ -87,7 +101,7 @@
 
                     <tbody>
                                 <!-- llamado de los productos(visualizacion) -->
-                        <?php 
+                     <!-- <?php 
 
                             $item= null;
                             $valor= null;
@@ -129,7 +143,7 @@
                         ?>                       
                                                   
 
-                    </tbody>
+                    </tbody> -->
 
                 </table>
 
@@ -168,8 +182,8 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
-                                <input type="text" class="form-control input-lg" name="nuevoCodigo"
-                                    placeholder="Ingresar codigo" required>
+                                <input type="text" class="form-control input-lg" name="nuevoCodigo" id="nuevoCodigo"
+                                    placeholder="Ingresar codigo" read only required>
 
                             </div>
 
@@ -195,7 +209,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                <input type="password" class="form-control input-lg" name="nuevaDescripcion"
+                                <input type="text" class="form-control input-lg" id="nuevaDescripcion" name="nuevaDescripcion"
                                     placeholder="Ingresar Descripcion" required>
                                
 
@@ -210,15 +224,24 @@
 
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                                <select class="form-control input-lg" name="nuevaCategoria">
+                                <select class="form-control input-lg" id="nuevaCategoria" name="nuevaCategoria" required>
 
                                     <option value=""> Seleccionar Categoria </option>
+                                    <?php
 
-                                    <option value="servicio"> servicio </option>
+                                    $item= null;
+                                    $valor= null;
+                                    
+                                    $categorias= ControladorCategorias :: ctrMostrarCategorias ($item, $valor);
 
-                                    <option value="Productos"> Productos </option>
+                                    foreach ($categorias as $key => $value){
 
-                                    <option value="Marketing"> Marketing </option>
+                                        echo'<option value="'.$value["id"].'"> '.$value["categoria"].'</option>';
+
+                                    }
+
+                                    ?>
+
                                 </select>
 
                             </div>
@@ -230,7 +253,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                                <input type="password" class="form-control input-lg" name="nuevoPrecioCompra"
+                                <input type="number" class="form-control input-lg" id="nuevoPrecioCompra" name="nuevoPrecioCompra"
                                    min="0" placeholder="Ingresar Precio" required>                               
 
                             </div>
@@ -241,8 +264,8 @@
                         <div class="form-group">
 
 
-                            <div class="panel">SUBIR imagen</div>
-                            <input type="file" class="nuevaimagen" name="nuevaimagen">
+                            <div class="panel">SUBIR IMAGEN</div>
+                            <input type="file" class="nuevaImagen" name="nuevaImagen">
                             <p class="help-block">Peso maximo de la imagen 2mb</p>
                             <img src="vistas/img/portafolio/man.png" class="img-thumbnail previsualizar" width="100px">
                             
@@ -260,3 +283,12 @@
                     <button type="submit" class="btn btn-primary">Guardar Item</button>
 
                 </div>
+
+                <?php 
+                    
+                    $crearProducto = new ControladorInventario();
+                    $crearProducto -> ctrCrearProducto();
+
+                ?>
+
+                <script src="vistas/js/productos.js"></script>
