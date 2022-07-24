@@ -9,6 +9,8 @@
 
 
 
+
+
 <header>
     <nav id="nav" class="nav1">
         <div class="contenedor-nav">
@@ -153,10 +155,10 @@
 
     </div>
 
+    </section>
+<div>
 
-</section>
-
-<!-- Modal agregar usuario -->
+<!-- Modal agregar item -->
 <div id="modalAgregarItem" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -284,11 +286,150 @@
 
                 </div>
 
+            
+
                 <?php 
                     
                     $crearProducto = new ControladorInventario();
                     $crearProducto -> ctrCrearProducto();
 
                 ?>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
 
-                <script src="vistas/js/productos.js"></script>
+<!-- Modal editar item -->
+<div id="modalEditarProducto" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <form role="form" method="post" enctype="multipart/form-data">
+
+                <div class="modal-header" style="background:#000">
+
+                    <h4 class="modal-title">Agregar Item</h4>
+
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="box-body">
+
+                        <div class="form-group">
+                            <!--codigo -->
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+                                <input type="text" class="form-control input-lg" name="editarCodigo" id="editarCodigo"
+                                    readonly required>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- nombre -->
+                        <div class="form-group">
+
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+                                <input type="text" class="form-control input-lg" name="editarNombre"
+                                 id="editarNombre" required>
+
+                            </div>
+
+                        </div>
+
+                        <!--descripcion -->
+                        <div class="form-group">
+
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                <input type="text" class="form-control input-lg" id="editarDescripcion" name="editarDescripcion"
+                                    required>
+                               
+
+                            </div>
+
+                        </div>
+
+                        <!--categoria -->
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                <select class="form-control input-lg"  name="editarCategoria" readonly required>
+
+                                    <option id="editarCategoria">  </option>
+                                   
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <!--precio -->
+                        <div class="form-group">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
+                                <input type="number" class="form-control input-lg" id="editarPrecioCompra" name="editarPrecioCompra"
+                                   min="0" required>                               
+
+                            </div>
+
+                            
+
+                        <!--foto -->
+                        <div class="form-group">
+
+
+                            <div class="panel">SUBIR IMAGEN</div>
+                            <input type="file" class="nuevaImagen" name="editarImagen">
+                            <p class="help-block">Peso maximo de la imagen 2mb</p>
+                            <img src="vistas/img/portafolio/man.png" class="img-thumbnail previsualizar" width="100px">
+
+                            <input type="hidden" name= "imagenActual" id="imagenActual">
+                            
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+
+                </div>
+
+            </form>
+
+             
+        </div>
+    </div>
+</div>
+
+
+	<!-- cargar de tablas -->
+
+	<script src="vistas/js/productos.js"></script>
+
+      
+
+
+
+               

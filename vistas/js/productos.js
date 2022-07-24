@@ -20,32 +20,68 @@ $('.tablaProductos').DataTable({
     "deferRnder": true,
     "retrieve": true,
     "processing": true,
-    "languaje": {
-        "decimal":        "",
-        "emptyTable":     "No data available in table",
-        "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
-        "infoEmpty":      "Showing 0 to 0 of 0 entries",
-        "infoFiltered":   "(filtered from _MAX_ total entries)",
-        "infoPostFix":    "",
-        "thousands":      ",",
-        "lengthMenu":     "Show _MENU_ entries",
-        "loadingRecords": "Loading...",
-        "processing":     "",
-        "search":         "Search:",
-        "zeroRecords":    "No matching records found",
-        "paginate": {
-            "first":      "First",
-            "last":       "Last",
-            "next":       "Next",
-            "previous":   "Previous"
-        },
-        "aria": {
-            "sortAscending":  ": activate to sort column ascending",
-            "sortDescending": ": activate to sort column descending"
-        }
-    }
-});
 
+
+    "columDefs":[
+
+        {
+        "targets":-8,
+        "data":null,
+        "defaultContent":'< img class="img-thumbnail imgTabla" width="40px">'
+        
+        },
+        
+        {
+        
+        "targets":-1,
+        "data":null,
+        "defaultContent": '<div class="btn-group><button class="btn btn-warning btnEditarProducto" idProducto data-toggle="modal" data-target="#modalEditarProducto"><i class="fa fa-pencil"></i></button><button class="btn btn-danger btnEliminarProducto" idProducto><i class=fa fa-times"></i></button></div>'
+        
+        }
+        
+        ],
+
+
+    "language": {
+
+        "sProcessing":     "Procesando...",
+        "sLengthMenu":     "Mostrar _MENU_ registros",
+        "sZeroRecords":    "No se encontraron resultados",
+        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix":    "",
+        "sSearch":         "Buscar:",
+        "sUrl":            "",
+        "sInfoThousands":  ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+        "sFirst":    "Primero",
+        "sLast":     "Último",
+        "sNext":     "Siguiente",
+        "sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+
+}
+
+} );
+
+
+/*====================================
+Activar botones del id correspondiente
+=====================================*/
+
+$('.tablaProductos tbody').on('click', 'button', function(){
+
+    var data =table.row($(this).parents('tr')).data();
+
+    $(this).attr("idProducto", data[8])
+});
 
 /*===============
 CAPTURA CATEGORIA
@@ -143,3 +179,14 @@ $(".nuevaImagen").change(function(){
     
  })
 
+
+ /*===============
+editar producto
+================*/
+
+$(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
+
+    var idProducto = $(this).attr("idProducto");
+    console.log("idProducto", idProducto);
+
+})

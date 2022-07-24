@@ -35,6 +35,8 @@ session_start();
       
     <!-- datatables JS -->
     <script type="text/javascript" src="vistas/datatables/datatables.min.js"></script>   
+
+
 	
 	
 
@@ -120,6 +122,8 @@ session_start();
 	<!-- sweet alert2 -->
 <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 <script type="text/javascript" src="vistas/js/main.js"></script> 
+
+
 	
 
 
