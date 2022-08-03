@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
   <head>
     <meta charset="utf-8">
     <title>Hefestos</title>
@@ -8,7 +6,9 @@
   <nav id="nav" class="nav1">
     <div class="contenedor-nav">
         <div class="enlaces" id="enlaces"><!-- enlaces de la parte superior -->
-            <a href="/HEFESTOS/" id="enlace-inicio" class="btn-header"> Inicio</a>        
+            <a href="/HEFESTOS/" id="enlace-inicio" class="btn-header"> Inicio</a>
+            
+            
            
         </div>
     </div>                        
@@ -20,13 +20,28 @@
     <div class="login-box">
       <img src="vistas/img/logoL.png" class="avatar" alt="Avatar Image">
       <h4>Has tu pedido!</h4>
-      <input  type="text" name="nombres" id="nombres" placeholder="Servicio Adquirido">
-      <input  type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Nombre">
-      <input  type="text" name="correo" id="correo" placeholder="Ingrese su Correo">
-      <input  type="text" name="correo" id="correo" placeholder="Ingrese la cantidad">
+      <br>
+      <input  type="text" name="nuevoCliente" id="nuevoNombre" placeholder="Ingrese su Nombre">
+      <input  type="text" name="nuevoCorreo" id="nuevoCorreo" placeholder="Ingrese su Correo">
+      <input  type="text" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingrese su telefono">
+      <textarea  type="text" class="form-control input-lg" name="nuevoPedido" id="nuevoPedido" placeholder="Ingrese su pedido"  rows="5" cols="35"></textarea>
       <p>Conoce nuestros <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Terminos y Condiciones</a></p>
-       <input type="submit" value="Enviar">
+      <br>
+      <br>
+       <button type="submit" class="btn btn-primary">Enviar</button>
       </form>
     </div>
+    <?php
+
+      $crearPedido = new ControladorPedidos();
+      $crearPedido -> ctrCrearPedido();
+
+    ?>
   </body>
-</html>
+
+
+
+                           
+                         
+                            
+                          

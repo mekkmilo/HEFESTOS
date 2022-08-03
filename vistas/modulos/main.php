@@ -42,24 +42,20 @@
                         <div class="servicios">
                             <div class="caja-servicios">
                                 <img src="vistas/iconos/hephaestus.png" alt="">
-                                <h4>Diseño</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                <h4>Productos</h4>
+                                <a href="listaInventario" id="enlace-inicio" class="btn-header">Mira nuestros Productos</a>
                              </div>                             
                                 <div class="caja-servicios">
                                     <img src="vistas/iconos/atlas.png" alt="">
-                                    <h4>Asesoria Digital</h4>
-                                    <p>Lorem ipsum dolor sit amet consectetur.</p>                                    
+                                    <h4>Quienes somos</h4>
+                                    <a href="nosotros" id="enlace-inicio" class="btn-header">Nosotros</a>                                    
                                  </div>                                  
                                     <div class="caja-servicios">
                                         <img src="vistas/iconos/hermes.png" alt="">
-                                        <h4>Marketing</h4>
-                                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                        <h4>cambiar</h4>
+                                        <a href="servicio" id="enlace-inicio" class="btn-header">Adquiere Nuestros Servicios!</a>
                                     </div>
                         </div>
                     </div>
-                    <div class="caja-servicios">
-                        <a href="servicio" id="enlace-inicio" class="btn-header">Adquiere Nuestros Servicios!</a>
-                    </div>
+                    
                 </section>
-
-           

@@ -25,6 +25,8 @@ session_start();
 	PLUGINS
 	=================================================-->
 
+	
+
 	<!-- jQuery, Popper.js, Bootstrap JS -->
 	<script src="vistas/jquery/jquery-3.3.1.min.js"></script>
     <script src="vistas/popper/popper.min.js"></script>
@@ -34,7 +36,12 @@ session_start();
   	<script src="vistas/plugins/sweetalert2/sweetalert2.all.min.js"></script>
       
     <!-- datatables JS -->
-    <script type="text/javascript" src="vistas/datatables/datatables.min.js"></script>     
+    <script type="text/javascript" src="vistas/datatables/datatables.min.js"></script>   
+
+
+	
+	
+
        
 	
 
@@ -71,10 +78,12 @@ session_start();
            //login
             if(isset($_GET["ruta"])){ 				
 				         
-            	 if ($_GET["ruta"] == "Login" ||
-               		 $_GET["ruta"] == "servicio" ) {              
-             		 	include "modulos/".$_GET["ruta"].".php";
-            	}
+				if ($_GET["ruta"] == "Login" ||
+				$_GET["ruta"] == "listaInventario" ||
+				$_GET["ruta"] == "nosotros" ||
+				  $_GET["ruta"] == "servicio" ) {              
+					include "modulos/".$_GET["ruta"].".php";
+		  }
 			}
 
 			if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
@@ -90,10 +99,11 @@ session_start();
 					   $_GET["ruta"] == "usuarios" ||
 					   $_GET["ruta"] == "proveedores" ||
 					   $_GET["ruta"] == "inventario" || 
+					   $_GET["ruta"] == "categoria" ||
 					   $_GET["ruta"] == "salir" )  
 					   {              
 						 include "modulos/".$_GET["ruta"].".php";
-			   }else{ include "modulos/404.php"; }
+			   }
 		   }
                   
 				echo '</div>';
@@ -109,10 +119,15 @@ session_start();
     <script src="vistas/js/main.js"></script>
     <script src="vistas/js/filtro.js"></script>
 	<script src="vistas/js/usuarios.js"></script>
+	<script src="vistas/js/categorias.js"></script>
+ 
+	
 
 	<!-- sweet alert2 -->
 <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 <script type="text/javascript" src="vistas/js/main.js"></script> 
+
+
 	
 
 

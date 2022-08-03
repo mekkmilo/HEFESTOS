@@ -1,8 +1,11 @@
 <footer id="contacto">
                 <div class="footer contenedor" class="imagen">
                     <div class="marca-logo">
-                        <img src="vistas/img/logo.png" alt="">
+                        <img src="vistas/img/logo3a.png"  alt="">
                     </div>
+                    <br>
+                    <br>
+                    <br>
                     <div class="iconos">
                         
                         <a href="https://www.youtube.com/channel/UCZNVFioD5vJpm3Xen2bYwlg">
@@ -15,7 +18,7 @@
                             <i class="fa-brands fa-instagram" style="color: #cba059"></i>
                         </a>
                     </div>
-                    <p>Diseños simples para souciones miticas</p>
+                    <p>Diseños simples para soluciones miticas</p>
                     <p>Siguenos en nuestras redes</p>
                     <p>o</p>
                     <p>contactanos</p>

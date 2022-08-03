@@ -15,15 +15,31 @@
             <div class="logo">
                 <img src="vistas/img/logo.png" alt="">
             </div>
-            <div class="enlaces" id="enlaces">
-                <!-- enlaces de la parte superior -->
-                <div class="enlaces" id="enlaces"><!-- enlaces de la parte superior -->
-                            <a href="wellcome" id="enlace-inicio" class="btn-header"> Inicio</a>
-                            <a href="serviceP" id="Pendientes" class="btn-header">Servicios Pendientes</a>
-                            <a href="usuarios" id="Clientes" class="btn-header">Usuarios</a>
-                            <a href="inventario" id="Inventario" class="btn-header">Portafolio</a>
-                            <a href="salir" id="Inventario" class="btn-header">Salir</a>
-                            <a href="#" class= "dropdown-toggle" data-toggle="dropdown">
+            <?php
+
+                            if ($_SESSION["perfil"]=="Admin" || $_SESSION["perfil"]=="AdminE"){
+                                echo'
+                            <div class="enlaces" id="enlaces"><!-- enlaces de la parte superior -->
+                                <a href="wellcome" id="enlace-inicio" class="btn-header"> Inicio</a>
+                                <a href="serviceP" id="Pendientes" class="btn-header">Cotizaciones</a>
+                                <a href="usuarios" id="Clientes" class="btn-header">Usuarios</a>
+                                <a href="categoria" id="categoria" class="btn-header">Categorias</a>
+                                <a href="inventario" id="Inventario" class="btn-header">Portafolio</a>
+                                <a href="salir" id="Inventario" class="btn-header">Salir</a>
+                                <a href="#" class= "dropdown-toggle" data-toggle="dropdown">';
+                            }
+
+                            if ($_SESSION["perfil"]=="Usuario" ){
+                                echo'
+                            <div class="enlaces" id="enlaces"><!-- enlaces de la parte superior -->
+                                <a href="wellcome" id="enlace-inicio" class="btn-header"> Inicio</a>
+                                <a href="serviceP" id="Pendientes" class="btn-header">Cotizaciones</a>                            
+                                <a href="categoria" id="categoria" class="btn-header">Categorias</a>
+                                <a href="inventario" id="Inventario" class="btn-header">Portafolio</a>
+                                <a href="salir" id="Inventario" class="btn-header">Salir</a>
+                                <a href="#" class= "dropdown-toggle" data-toggle="dropdown">';
+                            }
+                                ?>
                             <?php 
                             if($_SESSION["foto"] != ""){
                                 echo '<img src="'.$_SESSION["foto"].'" class="user-image">';
@@ -62,10 +78,12 @@
                 Agregar usuario
             </button>
 
+            <div style="height:12px"></div>
+
 
             <div class="box-body">
 
-                <table class="table table-bordered table-striped ">
+                <table class="table table-bordered table-striped tablas">
 
                     <thead>
 
@@ -97,7 +115,7 @@
                     foreach ($usuarios as $key => $value) {
 
                         echo '<tr>
-                        <td>1</td>
+                        <td>'.($key+1).'</td>
                         <td>'.$value["nombre"].'</td>
                         <td>'.$value["usuario"].'</td>';
 
@@ -113,9 +131,19 @@
                         
                         
 
-                        echo'<td>'.$value["perfil"].'</td>
-                        <td><button class="btn btn-success btn-xs">Activado</button></td>
-                        <td>'.$value["ultimo_login"].'</td>
+                        echo'<td>'.$value["perfil"].'</td>';
+
+                        if ($value["estado"] != 0){//condicion para inicio de sesion
+
+                            echo'<td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="0">
+                            Activado</button></td>';
+                        }else{
+                            echo'<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="1">
+                            Desactivado</button></td>';
+                        }
+                        
+
+                        echo '<td>'.$value["ultimo_login"].'</td>
                         <td>
                             <div class="btn-group">
 
@@ -123,7 +151,8 @@
                                 idUsuario="'.$value["id"].'" data-toggle="modal" 
                                 data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
 
-                                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                                <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id"].'" fotoUsuario="'.$value["foto"].'"
+                                usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
 
                         </td>
                     </tr>';
@@ -186,7 +215,7 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
                                 <input type="text" class="form-control input-lg" name="nuevoUsuario"
-                                    placeholder="Ingresar usuario" required>
+                                    placeholder="Ingresar usuario" id="nuevoUsuario" required>
 
                             </div>
 
@@ -200,6 +229,7 @@
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                                 <input type="password" class="form-control input-lg" name="nuevoPassword"
                                     placeholder="Ingresar contraseña" required>
+                               
 
                             </div>
 
@@ -235,6 +265,7 @@
                             <input type="file" class="nuevaFoto" name="nuevaFoto">
                             <p class="help-block">Peso maximo de la foto 2mb</p>
                             <img src="vistas/iconos/hades.png" class="img-thumbnail previsualizar" width="100px">
+                            
 
                         </div>
 
@@ -305,7 +336,7 @@
                                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
                                 <input type="text" class="form-control input-lg" id="editarUsuario"
                                 name="editarUsuario"
-                                    value="" required>
+                                    value="" readonly>
 
                             </div>
 
@@ -314,11 +345,14 @@
                         <!--contraseña -->
                         <div class="form-group">
 
-
                             <div class="input-group">
+
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                
                                 <input type="password" class="form-control input-lg" name="editarPassword"
-                                    placeholder="Escriba nueva contraseña" required>
+                                    placeholder="Escriba nueva contraseña">
+
+                                    <input type="hidden" id="passwordActual" name="passwordActual">
 
                             </div>
 
@@ -354,6 +388,7 @@
                             <input type="file" class="nuevaFoto" name="editarFoto">
                             <p class="help-block">Peso maximo de la foto 2mb</p>
                             <img src="vistas/iconos/hades.png" class="img-thumbnail previsualizar" width="100px">
+                            <input type="hidden" name="fotoActual" id="fotoActual">
 
                         </div>
 
@@ -368,15 +403,22 @@
                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 
                 </div>
-                <!-- <?php
+                <?php
 
-                // //objeto para crear usuario
-                // $crearUsuario = new ControladorUsuarios();
-                // $crearUsuario -> ctrCrearUsuario();
+                 //objeto para editar usuario
+                 $editarUsuario = new ControladorUsuarios();
+                 $editarUsuario -> ctrEditarUsuario();
 
 
-                ?> -->
+                ?> 
             </form>
         </div>
     </div>
 </div>
+
+<?php
+
+$borrarUsuario = new ControladorUsuarios();
+$borrarUsuario -> ctrBorrarUsuario();
+
+?>
