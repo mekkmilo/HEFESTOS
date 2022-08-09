@@ -59,7 +59,7 @@
                     <h2 style="color:#000" >Es momento de crear algo mitico!</h2>
                 </div>
 
-                <div style="height:120px" class="enlaces" id="enlaces">
+                
 
                
             

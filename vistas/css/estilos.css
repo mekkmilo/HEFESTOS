@@ -25,9 +25,7 @@ body {
   background: var(--fondo);
 }
 
-img {
-  vertical-align: baseline;
-}
+
 
 /*preloader*/
 .hidden{

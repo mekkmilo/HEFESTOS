@@ -37,8 +37,8 @@
                 </section>
                 <section class="about" id="servicio">
                     <div class="contenedor">
-                        <h3>Nuestrso Servicios</h3>
-                        <p class="after">Siempre Mejorando por ti</p> <!-- after para q salga el texto despues, Slogan -->
+                        <h3>Conocenos!</h3>
+                        <p class="after">HEFESTOS Siempre Mejorando por ti</p> <!-- after para q salga el texto despues, Slogan -->
                         <div class="servicios">
                             <div class="caja-servicios">
                                 <img src="vistas/iconos/hephaestus.png" alt="">
@@ -52,7 +52,7 @@
                                  </div>                                  
                                     <div class="caja-servicios">
                                         <img src="vistas/iconos/hermes.png" alt="">
-                                        <h4>cambiar</h4>
+                                        <h4>Blog del mitico herrero</h4>
                                         <a href="servicio" id="enlace-inicio" class="btn-header">Adquiere Nuestros Servicios!</a>
                                     </div>
                         </div>

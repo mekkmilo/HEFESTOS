@@ -21,6 +21,9 @@ session_start();
     <!--datables estilo bootstrap 4 CSS-->  
     <link rel="stylesheet"  type="text/css" href="vistas/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
 
+
+
+
 <!--================================================
 	PLUGINS
 	=================================================-->
@@ -126,6 +129,7 @@ session_start();
 	<!-- sweet alert2 -->
 <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 <script type="text/javascript" src="vistas/js/main.js"></script> 
+
 
 
 	
