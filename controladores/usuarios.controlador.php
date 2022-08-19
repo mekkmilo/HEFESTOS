@@ -72,7 +72,7 @@ static public function ctrIngresoUsuario(){
 
 				}else {
 
-					echo '<br><div class="alert alert-danger">Error al ingresar, intenta de nuevo</div>';
+					echo '<br><div class="alert alert-danger">Error al ingresar, Intentar nuevamente</div>';
 
 					}
 				}
@@ -432,7 +432,7 @@ borrar usuario
 			Swal.fire({
 
 				type: "success",
-				title:"¡El se elimino correctamente!",
+				title:"¡El Usuario se elimino correctamente!",
 				showConfirmButton: true,
 				confirmButtonText: "Cerrar",
 				closeOnConfirm: false
